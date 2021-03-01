@@ -7,7 +7,7 @@
         <p>Foodfy is a project developed on <strong>RocketSeat Bootcamp.</strong></p>
         </li>
         <li>
-        <p>The project geared towards culinary in general. dA recipe website made by users.</p>
+        <p>The project geared towards culinary in general. A recipe website made by users.</p>
         </li>
     </ul>
 </body>
