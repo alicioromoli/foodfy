@@ -1,0 +1,59 @@
+{% extends "../website/layout.njk" %}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                    <div class="recipe__head">
+                        <div class="recipe__head__img">
+                            <img src="{{item.image}}" alt={{item.title}}>
+                        </div>
+                        <div class="recipe__head__title">
+                            <h5>{{item.title}}</h5>
+                        </div>
+                        <div class="recipe__head__author">
+                            <p>{{chef.name}}</p>
+                        </div>
+                    </div>
+
+                    <section class="ingredients">
+                        <div class="ingredients__head">
+                            <h1>Ingredients</h1>
+                            <p onclick = "toogleButton(event, 'ingredientInfo')">open</p>
+                        </div>
+                        <div id="ingredientInfo" class="ingredients__information" style="max-height: 0px;">
+                            <ul >
+                            {% for ingredient in item.ingredients%}
+                                <li>{{ingredient}}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+
+                    </section>
+
+                    <section class="prepare"> 
+                        <div class="prepare__head">
+                            <h1>How to prepare</h1>
+                            <p onclick = "toogleButton(event, 'prepareInfo')">open</p>
+                        </div>  
+                        <div class="prepare__information" style="max-height: 0px;">
+                            <div id ="prepareInfo" >
+                                <ul>
+                                    {% for item in item.preparation%}
+                                        <li>- {{item}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="information">
+                        <div class="information__head">
+                            <h1>Aditional Information</h1>
+                            <p onclick = "toogleButton(event, 'informationInfo')">open</p>
+                        </div>
+                        <div class="information__information">
+                            <p id="informationInfo" style="max-height: 0px;">{{item.information}}</p>
+                        </div>
+                    </section>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}

@@ -1,0 +1,18 @@
+{% extends "../website/layout.njk" %}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                    <div class="wrapper__body__chefs-cards">
+                        {% for chef in chefs %}
+                            <div class="chef-card" id={{item.id}}>
+                                <img src={{chef.avatar_path}} alt={{chef.name}}>
+                                <div class="chef-card__details">
+                                    <h5>{{chef.name}}</h5>
+                                    <p>{{chef.total_recipes}} recipes</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}

@@ -1,0 +1,21 @@
+{% extends "../layout.njk" %}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                <form class="wrapper__body" method="POST" action="/admin/users">
+                    <div class="wrapper__body__users-header">
+                        <h1>Create user</h1>
+                        <div class="wrapper__header__recipe__buttons">
+                            <button type="submit">Save</button>
+                            <button class="cancel"><a href="/admin/users">Cancel</a></button>
+                        </div>
+                    </div>
+                    <div class="wrapper__body__users-fields">
+                        <div class="wrapper__body__users-items">
+                            {% include 'admin/user/fields.njk'%}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}

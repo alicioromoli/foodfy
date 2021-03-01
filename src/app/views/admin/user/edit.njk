@@ -1,0 +1,25 @@
+{% extends "../layout.njk" %}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                <form id="form_post" class="wrapper__body" method="POST" action="/admin/users?_method=PUT">
+                    <div class="wrapper__body__users-header">
+                        <h1>Edit User</h1>
+                        <div class="wrapper__header__recipe__buttons">
+                            <button type="submit" form="form_post">Save</button>
+                            <button type="submit" id="delete_button" form="form_delete" onclick="deleteConfirmation(event)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="wrapper__body__users-fields">
+                        <div class="wrapper__body__users-items">
+                            {% include 'admin/user/fields.njk'%}
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value={{user.id}}>
+                </form>
+                <form action="/admin/users?_method=DELETE" id="form_delete" method="post">
+                    <input type="hidden" name="id" value={{user.id}}>
+                </form>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}

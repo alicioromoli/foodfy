@@ -1,0 +1,32 @@
+{% extends "../website/layout.njk" %}
+    {% block navbar %}
+    <div class="navbar__search">
+        <form action="/recipes" method="get">
+            <input 
+                type="text"
+                name="filter"
+                placeholder="search recipes"
+            >
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    {% endblock%}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                    <div class="wrapper__body__cards">
+                    {% for item in items %}
+                        <div class="card" id={{item.id}}>
+                            <img src="/assets/{{item.name}}.png" alt={{item.name}}>
+                            <div class="card__title">
+                                <h5>{{item.title}}</h5>
+                            </div>
+                            <div class="card__author">
+                                <p>{{item.author}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}

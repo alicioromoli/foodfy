@@ -1,0 +1,33 @@
+{% extends "../layout.njk" %}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                    <div class="wrapper__body__users-header">
+                        <h1>Users</h1>
+                        <div class="wrapper__header__recipe__buttons">
+                            <button type="submit"><a href="/admin/users/create">New</a></button>
+                        </div>
+                    </div>
+                    <div class="wrapper__body__users-list">
+                        {% for user in users %}
+                            <div class="wrapper__body__users-item">
+                                <div class="wrapper__body__users-item_header">
+                                    <h3>{{user.name}}</h3>
+                                    <h5>{{user.email}}</h5>
+                                </div>
+                                <div class="wrapper__body__users-item-buttons">
+                                    <a href="/admin/users/edit/{{user.id}}">Edit</a>
+                                    <form action="/admin/users?_method=DELETE" method="post">
+                                        <input type="hidden" name="id" value="{{user.id}}">
+                                        <button type="submit"
+                                                onclick="deleteConfirmation(event)"
+                                                >Remove</button>
+                                        <input type="hidden" name="sessionId">
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}

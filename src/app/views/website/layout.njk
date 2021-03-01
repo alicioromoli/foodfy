@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheet.css">
+    </head>
+
+    <body>
+        <main class="wrapper">
+            <header>
+                <nav class="navbar">
+                    <a href="/">
+                        <img src="/assets/logo.png" alt="FoodFy">
+                    </a>
+                    <div class="navbar__links">
+                        <a href="/about">About</a>
+                        <a href="/recipes">Recipes</a>
+                        <a href="/chefs">Chefs</a>
+                    </div>
+                    {% block navbar %}
+                    {% endblock%}
+                </nav>
+            </header>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer class="footer">
+            <span>All rights reserved ©</span>
+        </footer>
+    </body>
+</html>

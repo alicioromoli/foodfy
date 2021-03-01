@@ -1,0 +1,71 @@
+{% extends "../layout.njk" %}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                <div class="wrapper__header__recipe">
+                    <h1>Recipe: {{recipe.title}}</h1>
+                    <button><a href="/admin/recipes/{{recipe.id}}/edit">Edit Recipe</a></button>
+                        
+                </div>
+                
+                    <div class="recipe__head">
+                        <div class="recipe__head__img">
+                            <img class="highlight" src="{{files[0].path}}" alt={{item.title}}>
+                            <div class="recipe__head__img__gallery">
+                                {% for image in files %}    
+                                    <img 
+                                        {% if loop.index == 1 %}
+                                            class="active"
+                                        {% endif %}
+                                        src="{{image.path}}"
+                                        onclick="ImageGallery.setImage(event)"
+                                    >
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="recipe__head__title">
+                            <h5>{{recipe.title}}</h5>
+                        </div>
+                        <div class="recipe__head__author">
+                            <p>by {{recipe.chef_name}}</p>
+                        </div>
+                    </div>
+
+                    <section class="ingredients">
+                        <div class="ingredients__head">
+                            <h1>Ingredients</h1>
+                        </div>
+                        <div id="ingredientInfo" class="ingredients__information__admin">
+                            <ul >
+                            {% for ingredient in recipe.ingredients%}
+                                <li>- {{ingredient}}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+
+                    </section>
+
+                    <section class="prepare"> 
+                        <div class="prepare__head">
+                            <h1>How to prepare</h1>
+                        </div>  
+                        <div class="prepare__information__admin">
+                            <ul>
+                            {% for item in recipe.preparation%}
+                                <li>- {{item}}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="information">
+                        <div class="information__head">
+                            <h1>Aditional Information</h1>
+                        </div>
+                        <div class="information__information__admin">
+                            <p id="informationInfo">{{recipe.information}}</p>
+                        </div>
+                    </section>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}

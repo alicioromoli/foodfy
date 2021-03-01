@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include './parts/styles.njk'%}
+    </head>
+
+    <body>
+        {% include "./parts/messages.njk"%}
+        <header class="header__admin">
+                <nav class="navbar">
+                    <a href="/admin">
+                        <img src="/assets/logo.png" alt="FoodFy">
+                    </a>
+                    <div class="navbar__links">
+                        <div class="start-links">
+                            <a href="/admin/recipes">Recipes</a>
+                            <a href="/admin/chefs">Chefs</a>
+                            <a href="/admin/users">Users</a>
+                            <a href="/admin/profile">profile</a>
+                            <a href="/admin/session">profile</a>
+                        </div>
+                        <form action="/admin/logout" method="post">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </div>
+                </nav>
+            </header>
+
+        <main class="wrapper">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        
+    </body>
+</html>

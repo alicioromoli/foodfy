@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include '../parts/styles.njk'%}
+    </head>
+
+    <body>
+        {% include "../parts/messages.njk"%}
+        <header class="header__admin-login">
+                <nav class="navbar-login">
+                    <a href="/admin">
+                        <img src="/assets/logo.png" alt="FoodFy">
+                    </a>
+                </nav>
+            </header>
+
+        <main class="wrapper">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        
+    </body>
+</html>

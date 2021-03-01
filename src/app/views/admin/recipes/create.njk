@@ -1,0 +1,13 @@
+{% extends "../layout.njk" %}
+    
+    {% block content %}
+            <form class="wrapper__body" method="POST" action="/admin/recipes" enctype="multipart/form-data">
+                <div class="wrapper__header__recipe">
+                    <h1>Creating recipe</h1>
+                    <button type="submit">Save recipe</button>
+                </div>
+
+                {% include 'admin/recipes/fields.njk' %}
+            </form>
+        <script src="/../scripts.js"></script>
+    {% endblock %}

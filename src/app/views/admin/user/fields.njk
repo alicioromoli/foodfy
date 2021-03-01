@@ -1,0 +1,36 @@
+<div class="wrapper__body__users-item">
+    <p>Name</p>
+    <div class="input">
+        <input 
+            type="text"
+            name="name"
+            placeholder="name"
+            value="{{user.name}}"
+        >
+    </div>
+</div>
+
+<div class="wrapper__body__users-item">
+    <p>Email</p>
+    <div class="input">
+        <input 
+            type="email"
+            name="email"
+            placeholder="email"
+            value="{{user.email}}"
+            onblur="Validate.apply(this, 'isEmail')"
+        >
+    </div>
+</div>
+
+<div class="adminCheckbox">
+    <input 
+        type="checkbox" 
+        name="is_admin"
+        {%if user.is_admin %}
+        checked
+        {%endif%}
+    >
+  <label for="is_admin">Admin
+  </label>
+</div>

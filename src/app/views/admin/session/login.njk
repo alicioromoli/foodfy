@@ -1,0 +1,43 @@
+{% extends "./layout.njk" %}
+    
+    {% block content %}
+            <div class="wrapper__body">
+                <form action="/admin/login" method="POST">
+                    <div class="wrapper__body__login-admin__header">
+                        <h1>Session Login</h1>
+                    </div>
+                    <div class="wrapper__body__login-admin__fields">
+                        <div class="wrapper__body__login-admin__field">
+                            <p>Email</p>
+                            <div class="input">
+                                <input 
+                                    type="email"
+                                    name="email"
+                                    placeholder="place your email"
+                                    value="{{user.email}}"
+                                    onblur="Validate.apply(this, 'isEmail')"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="wrapper__body__login-admin__field">
+                            <p>Password</p>
+                            <div class="input">
+                                <input 
+                                    type="password"
+                                    name="password"
+                                    placeholder="place your password"
+                                    value="{{user.name}}"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="wrapper__body__login-admin__field-footer">
+                            <a href="">forgot password?</a>
+                            <button type="submit">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <script src="/scripts.js"></script>
+    {% endblock %}
