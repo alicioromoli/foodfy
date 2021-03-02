@@ -25,13 +25,13 @@ module.exports = {
 
         const token = crypto.randomBytes(20).toString('hex')
 
-        const values = [
+        const values = {
             name,
             email,
-            passwordHash,
-            token,
-            is_admin || false
-        ]
+            password: passwordHash,
+            reset_token: token,
+            is_admin: is_admin || false
+    }
 
         const userId = await User.create(values)
         req.session.userId = userId

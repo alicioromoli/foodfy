@@ -66,7 +66,7 @@ module.exports = {
                 success = "created successfully"
             }
 
-            await Chef.updateSet(req.params.id,{
+            await Chef.update(req.params.id,{
                 is_creating: false
             })
         }
@@ -83,7 +83,7 @@ module.exports = {
                 success = "updated successfully"
             }
 
-            await Chef.updateSet(req.params.id,{
+            await Chef.update(req.params.id,{
                 is_updating: false
             })
         }
@@ -102,21 +102,23 @@ module.exports = {
             }
         }
 
-        let results = await File.create({
-            ...req.file
+        const file = await File.create({
+            name: req.file.filename,
+            path: req.file.path
         })
-        const file = results.rows[0]
 
-        const values = [
-            req.body.name,
-            req.file.filename,
-            file.id
-        ]
+        const { name } = req.body
+        const {filename: avatar} = req.file
 
-        results = await Chef.create(values)
-        const chef = results.rows[0]
+        const values = {
+            name: String(name),
+            avatar: String(avatar),
+            file_id: file.id
+        }
 
-        await Chef.updateSet(chef.id,{
+        const chef = await Chef.create(values)
+
+        await Chef.update(chef.id,{
             is_creating: true
         })
 
@@ -125,8 +127,7 @@ module.exports = {
     },
     async edit(req, res){
 
-        let results = await Chef.find(req.params.id)
-        const chef = results.rows[0]
+        const chef = await Chef.find(req.params.id)
 
         results = await Chef.findAvatar(chef.file_id)
         const file = results.rows[0]
@@ -147,8 +148,8 @@ module.exports = {
             }
         }    
 
-        let results = await Chef.find(req.body.id)
-        const chef = results.rows[0]
+        const chef = await Chef.find(req.body.id)
+        console.log(chef.id)
 
         results = await Chef.findAvatar(chef.file_id)
         let file = results.rows[0]
@@ -156,22 +157,22 @@ module.exports = {
         if(req.file) {
             await File.delete(chef.file_id)
             
-            let results = await File.create({
-                ...req.file
+            const file = await File.create({
+                name: req.file.filename,
+                path: req.file.path
             })
-            file = results.rows[0]
         }
 
-        const values = [
-            req.body.name,
-            file.name || req.file.filename,
-            file.id,
-            req.body.id
-        ]
+        const values = {
+            name: req.body.name,
+            avatar: file.name || req.file.filename,
+            file_id: file.id,
+            id: req.body.id
+        }
 
-        await Chef.update(values)
-
-        await Chef.updateSet(chef.id,{
+        await Chef.update(chef.id, values)
+        
+        await Chef.update(chef.id,{
             is_updating: true
         })
 

@@ -69,7 +69,7 @@ module.exports = {
                 success = "created successfully"
             }
 
-            await Recipe.updateSet(req.params.id,{
+            await Recipe.update(req.params.id,{
                 is_creating: false
             })
         }
@@ -86,7 +86,7 @@ module.exports = {
                 success = "updated successfully"
             }
 
-            await Recipe.updateSet(req.params.id,{
+            await Recipe.update(req.params.id,{
                 is_updating: false
             })
         }
@@ -103,34 +103,35 @@ module.exports = {
         }
         const {userId: id} = req.session
 
-        const values = [
-            req.body.chef,
-            id,
-            req.body.title,
-            req.body.ingredients,
-            req.body.preparation,
-            req.body.information
-        ]
-        let results = await Recipe.create(values)
-        const recipe = results.rows[0]
+        const values = {
+            chef_id: req.body.chef,
+            user_id: id,
+            title: req.body.title,
+            ingredients: req.body.ingredients,
+            preparation: req.body.preparation,
+            information: req.body.information
+        }
+        
+        console.log(values)
+        const recipe = await Recipe.create(values)
 
         const filePromise = req.files.map(async file => {
-            let result = await File.create({
-                ...file
+            const fileCreated = await File.create({
+                name: file.filename,
+                path: file.path
             })
-            const fileCreated = result.rows[0]
 
-            const data = [
-                recipe_id = recipe.id,
-                file_id = fileCreated.id
-            ]
+            const data = {
+                recipe_id: recipe.id,
+                file_id : fileCreated.id
+        }
 
             await FileRecipe.create(data)
         })
 
         await Promise.all(filePromise)
 
-        await Recipe.updateSet(recipe.id,{
+        await Recipe.update(recipe.id,{
             is_creating: true
         })
         
@@ -161,18 +162,18 @@ module.exports = {
     },
     async put(req, res){
 
-        const values = [
-            req.body.chef,
-            req.body.title,
-            req.body.ingredients,
-            req.body.preparation,
-            req.body.information,
-            req.body.id
-        ]
+        const values = {
+            chef_id: req.body.chef,
+            title: req.body.title,
+            ingredients: req.body.ingredients,
+            preparation: req.body.preparation,
+            information: req.body.information,
+            id: req.body.id
+        }
 
-        await Recipe.update(values)
+        await Recipe.update(req.body.id, values)
 
-        await Recipe.updateSet(req.body.id,{
+        await Recipe.update(req.body.id,{
             is_updating: true
         })
 

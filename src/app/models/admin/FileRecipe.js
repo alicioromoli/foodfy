@@ -1,18 +1,11 @@
 const db = require('../../../config/db')
 const fs = require('fs')
+const Base = require('./Base')
+
+Base.init({table: "recipe_files"})
 
 module.exports = {
-    create(data){
-        const query = `
-            INSERT INTO recipe_files (
-                recipe_id,
-                file_id
-            ) VALUES($1, $2)
-            RETURNING id
-        `
-
-        return db.query(query, data)
-    },
+    ...Base,
     find(id){
         return db.query(`
         SELECT *
