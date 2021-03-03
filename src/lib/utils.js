@@ -58,5 +58,52 @@ module.exports = {
         }
 
         return success
+    },
+    async updatingOrCreating(isUpdating, isCreating, createdAt, updatedAt, table , paramsId){
+
+        let success = false
+    
+        let now = new Date()
+            now = {
+                hour: now.getHours(),
+                minute: now.getMinutes(),
+                seconds: now.getSeconds()
+            }
+
+            const messageConfirm = (time) => {
+                let messageConfimationAct = new Date(time)
+                return messageConfimationAct = {
+                hour: messageConfimationAct.getHours(),
+                minute: messageConfimationAct.getMinutes(),
+                seconds: messageConfimationAct.getSeconds()
+                }
+            }
+            
+            if(isCreating){
+                const time = messageConfirm(createdAt)
+    
+                if(now.hour == time.hour && now.minute == time.minute && now.seconds == time.seconds){
+                     success = "created successfully"
+                }
+    
+                await table.update(paramsId,{
+                    is_creating: false
+                })
+            }
+    
+            if(isUpdating) {
+                const time = messageConfirm(updatedAt)
+    
+                if(now.hour == time.hour && now.minute == time.minute && now.seconds == time.seconds){
+                    success = "updated successfully"
+                }
+    
+                await table.update(paramsId,{
+                    is_updating: false
+                })
+            }
+            console.log(success)
+            return success
     }
 }
+

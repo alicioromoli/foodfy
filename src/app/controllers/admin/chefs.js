@@ -1,10 +1,11 @@
 const Chef = require('../../models/admin/Chef')
 const File = require('../../models/admin/File')
 const FileRecipe = require('../../models/admin/FileRecipe')
+const { updatingOrCreating } = require('../../../lib/utils')
 
 module.exports = {
     async index(req, res){
-
+        //
         let results = await Chef.all()
         const chefPromise = results.rows.map(chef => ({
             ...chef,
@@ -12,7 +13,7 @@ module.exports = {
         }))
 
         const chefs = await Promise.all(chefPromise)
-
+        //
         return res.render('admin/chefs/index', { chefs })
     },
     create(req, res){
@@ -45,52 +46,16 @@ module.exports = {
 
     const recipes = await Promise.all(promiseRecipes)
 
-    let now = new Date()
-        now = {
-            hour: now.getHours(),
-            minute: now.getMinutes(),
-            seconds: now.getSeconds()
-        }
-
-        let success = false
-
-        if(chef.is_creating){
-            let messageConfimationAct = new Date(chef.created_at)
-            messageConfimationAct = {
-            hour: messageConfimationAct.getHours(),
-            minute: messageConfimationAct.getMinutes(),
-            seconds: messageConfimationAct.getSeconds()
-            }
-
-            if(now.hour == messageConfimationAct.hour && now.minute == messageConfimationAct.minute && now.seconds == messageConfimationAct.seconds){
-                success = "created successfully"
-            }
-
-            await Chef.update(req.params.id,{
-                is_creating: false
-            })
-        }
-
-        if(chef.is_updating) {
-            let messageConfimationAct = new Date(chef.updated_at)
-            messageConfimationAct = {
-            hour: messageConfimationAct.getHours(),
-            minute: messageConfimationAct.getMinutes(),
-            seconds: messageConfimationAct.getSeconds()
-        }
-
-            if(now.hour == messageConfimationAct.hour && now.minute == messageConfimationAct.minute && now.seconds == messageConfimationAct.seconds){
-                success = "updated successfully"
-            }
-
-            await Chef.update(req.params.id,{
-                is_updating: false
-            })
-        }
-
-        chef.avatar_img = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
-
-        return res.render('admin/chefs/show', { chef, recipes, success })
+    const success = await updatingOrCreating(
+        chef.is_updating, 
+        chef.is_creating, 
+        chef.created_at, 
+        chef.updated_at, 
+        Chef, req.params.id)
+    
+    chef.avatar_img = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
+        
+    return res.render('admin/chefs/show', { chef, recipes, success })
 
     },
     async post(req, res){
@@ -182,7 +147,7 @@ module.exports = {
         const { id } = req.body
 
         await Chef.delete(id)
-
+        //
         let results = await Chef.all()
         const chefPromise = results.rows.map(chef => ({
             ...chef,
@@ -190,7 +155,7 @@ module.exports = {
         }))
 
         const chefs = await Promise.all(chefPromise)
-
+        //
         return res.render('admin/chefs/index', {
             chefs,
             success: "The chef has been deleted successfully"

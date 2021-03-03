@@ -6,10 +6,10 @@
                     <div class="wrapper__body__cards__recipes">
                     {% for recipe in recipes %}
                         <div class="card__recipe" id={{recipe.id}}>
-                            <img src="{{recipe.path}}" alt={{recipe.title}}>
+                            <img src="{{recipe.img}}" alt={{recipe.title}}>
                             <div class="card__recipe__details">
                                 <h5>{{recipe.title}}</h5>
-                                <p>{{recipe.chef_name}}</p>
+                                <p>by {{recipe.chef_name}}</p>
                                 <a href="/admin/recipes/{{recipe.id}}">show</a>
                             </div>
                         </div>

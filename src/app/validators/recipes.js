@@ -26,15 +26,15 @@ async function put(req, res, next){
 
     if(req.files){
         const filePromise = req.files.map(async file => {
-            let result = await File.create({
-                ...file
+            const fileCreated = await File.create({
+                name: file.name,
+                path: file.path
             })
-            const fileCreated = result.rows[0]
 
-            const data = [
-                recipe_id = req.body.id,
-                file_id = fileCreated.id
-            ]
+            const data = {
+                recipe_id : req.body.id,
+                file_id : fileCreated.id
+        }
 
             await FileRecipe.create(data)
         })

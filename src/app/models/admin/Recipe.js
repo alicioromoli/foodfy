@@ -14,7 +14,7 @@ module.exports = {
 
         return db.query(query)
     },
-    find(id){
+    async find(id){
         const query= `
         SELECT recipes.*, (chefs.name) AS chef_name
         FROM recipes

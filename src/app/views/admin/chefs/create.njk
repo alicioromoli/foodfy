@@ -4,7 +4,7 @@
             <form class="wrapper__body" method="POST" action="/admin/chefs" enctype="multipart/form-data">
                 <div class="wrapper__header__recipe">
                     <h1>Create new chef</h1>
-                    <button type="submit">Save chef</button>
+                    <button type="submit" onclick="Validate.fillAllFields(this)">Save chef</button>
                 </div>
 
                 {% include 'admin/chefs/fields.njk' %}

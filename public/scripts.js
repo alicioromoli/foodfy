@@ -85,13 +85,18 @@ const Validate = {
         if(results.error) Validate.displayError(input, results.error)
         
    },
-   displayError(input, error){
-
+   addErrorDiv(error){
         const divError = document.createElement('div')
         const errorTag = document.createElement('p')
         divError.classList.add('error')
         divError.appendChild(errorTag)
         errorTag.innerHTML = error
+        
+        return divError
+   },
+   displayError(input, error){
+
+        const divError = this.addErrorDiv(error)
 
         input.parentNode.appendChild(divError)
 
@@ -133,8 +138,19 @@ const Validate = {
             error,
             value
         }
-   }
+   },
+   fillAllFields(event){
+    const fields = document.querySelectorAll('input, select, textarea')
 
+    for(field of fields){
+        if(field.value == ""){
+            console.log(field.value)
+            const error = this.addErrorDiv("please fill all fields")
+            document.querySelector('body').append(error)
+            event.preventDefault()
+        }
+    }
+   }
 }
 
 const ImageGallery = {

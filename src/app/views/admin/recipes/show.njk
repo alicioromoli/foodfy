@@ -10,14 +10,14 @@
                 
                     <div class="recipe__head">
                         <div class="recipe__head__img">
-                            <img class="highlight" src="{{files[0].path}}" alt={{item.title}}>
+                            <img class="highlight" src="{{recipe.img}}" alt={{item.title}}>
                             <div class="recipe__head__img__gallery">
-                                {% for image in files %}    
+                                {% for image in recipe.files %}    
                                     <img 
                                         {% if loop.index == 1 %}
                                             class="active"
                                         {% endif %}
-                                        src="{{image.path}}"
+                                        src="{{image.src}}"
                                         onclick="ImageGallery.setImage(event)"
                                     >
                                 {% endfor %}

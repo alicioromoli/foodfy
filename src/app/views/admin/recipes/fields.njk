@@ -12,14 +12,14 @@
                 <span class="material-icons">add</span>
         </div>
         <div id="photos-preview">
-            {% if files %}
-                {% for image in files %}
+            {% if recipe.files %}
+                {% for image in recipe.files %}
                     <div 
                         class="photo" 
                         id="{{image.id}}"
                         onclick="PhotosUpload.removeOldPhoto(event)"
                     >
-                        <img src="{{image.path}}" alt="">
+                        <img src="{{image.src}}" alt="">
                         <span class="material-icons">close</span>
                     </div>
                 {% endfor %}
@@ -36,7 +36,6 @@
         name="title"
         placeholder="recipe name"
         value="{{recipe.title}}"
-        onclick="test(event)" 
         >
 </div>
 

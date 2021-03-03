@@ -8,7 +8,7 @@ module.exports = {
     ...Base,
     find(id){
         return db.query(`
-        SELECT *
+        SELECT recipe_files.*, files.name, files.path
         FROM recipe_files
         LEFT JOIN files ON (recipe_files.file_id = files.id)
         WHERE recipe_files.recipe_id = $1

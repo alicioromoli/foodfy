@@ -15,9 +15,8 @@
     justify-content: center;
     position: absolute;
     top: 20px;
-    right: 20px;
     opacity: 1;
-
+    
     animation: hidemessage 400ms 3s ease-in-out forwards;
 }
 
