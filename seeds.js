@@ -99,8 +99,6 @@ async function createRecipes (){
         recipes.push(recipe)
     }
 }
-//ok
-
 
 async function createRecipeFile (){
     console.log(recipes)
