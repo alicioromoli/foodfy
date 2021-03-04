@@ -11,17 +11,17 @@
                     <div class="recipe__head">
                         <div class="recipe__head__img">
                             <img class="highlight" src="{{recipe.img}}" alt={{item.title}}>
-                            <div class="recipe__head__img__gallery">
-                                {% for image in recipe.files %}    
-                                    <img 
-                                        {% if loop.index == 1 %}
-                                            class="active"
-                                        {% endif %}
-                                        src="{{image.src}}"
-                                        onclick="ImageGallery.setImage(event)"
-                                    >
-                                {% endfor %}
-                            </div>
+                                <div class="recipe__head__img__gallery">
+                                    {% for image in recipe.files %}    
+                                        <img 
+                                            {% if loop.index == 1 %}
+                                                class="active"
+                                            {% endif %}
+                                            src="{{image.src}}"
+                                            onclick="ImageGallery.setImage(event)"
+                                        >
+                                    {% endfor %}
+                                </div>
                         </div>
                         <div class="recipe__head__title">
                             <h5>{{recipe.title}}</h5>

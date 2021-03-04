@@ -61,13 +61,18 @@ module.exports = {
         })
     },
     async edit(req, res){
-        const { id } = req.params
+        try{
+            const { id } = req.params
     
         const user = await User.findOne({
             where: { id }
         })
 
         return res.render('admin/user/edit', { user })
+        }catch(err){
+            console.log(err)
+            return res.send("Some error has occurred or page doesn’t exist")
+        }
     },
     async update(req, res){
         let { name, email, is_admin, id } = req.body

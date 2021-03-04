@@ -30,65 +30,17 @@
                     <h1>Popular Recipes</h1>
                 </div>
                 <div class="wrapper__body__cards">
-                    <div class="card">
-                        <img src="/assets/burger.png" alt="Burger">
-                        <div class="card__title">
-                            <h5>Triplo Bacon Burger</h5>
+                    {%for recipe in recipes%}
+                        <div class="card">
+                            <a href="recipes/{{recipe.id}}"><img src="{{recipe.path}}" alt="{{recipe.title}}"></a>
+                            <div class="card__title" id={{recipe.id}}>
+                                <h5>{{recipe.title}}</h5>
+                            </div>
+                            <div class="card__author">
+                                <p>by {{recipe.chef_name}}</p>
+                            </div>
                         </div>
-                        <div class="card__author">
-                            <p>Por Jorge Relato</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="/assets/burger.png" alt="Burger">
-                        <div class="card__title">
-                            <h5>Triplo Bacon Burger</h5>
-                        </div>
-                        <div class="card__author">
-                            <p>Por Jorge Relato</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="/assets/burger.png" alt="Burger">
-                        <div class="card__title">
-                            <h5>Triplo Bacon Burger</h5>
-                        </div>
-                        <div class="card__author">
-                            <p>Por Jorge Relato</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="/assets/burger.png" alt="Burger">
-                        <div class="card__title">
-                            <h5>Triplo Bacon Burger</h5>
-                        </div>
-                        <div class="card__author">
-                            <p>Por Jorge Relato</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="/assets/burger.png" alt="Burger">
-                        <div class="card__title">
-                            <h5>Triplo Bacon Burger</h5>
-                        </div>
-                        <div class="card__author">
-                            <p>Por Jorge Relato</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="/assets/burger.png" alt="Burger">
-                        <div class="card__title">
-                            <h5>Triplo Bacon Burger</h5>
-                        </div>
-                        <div class="card__author">
-                            <p>Por Jorge Relato</p>
-                        </div>
-                    </div>
+                    {%endfor%}
                 </div>
             </div>
 {% endblock %}

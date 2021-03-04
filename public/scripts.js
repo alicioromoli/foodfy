@@ -1,4 +1,12 @@
 const paginate = document.querySelector('.paginate')
+const currentPage = location.pathname
+const navBarLinks = document.querySelectorAll('.navbar__links .start-links a, .navbar .navbar__links a')
+
+for(link of navBarLinks){
+    if(currentPage.includes(link.getAttribute('href'))) {
+        link.classList.add('active')
+    }
+}
 
 function addItem(inputDiv, input) {
     const item = document.querySelector(inputDiv)
@@ -52,7 +60,7 @@ paginate.innerHTML = elements
 }
 
 const deleteConfirmation = (event) => {
-        const confirmation = confirm(event)
+        const confirmation = confirm("Are you sure you want delete this?")
         if(!confirmation){
             event.preventDefault()
             }

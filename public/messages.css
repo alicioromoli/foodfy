@@ -16,7 +16,7 @@
     position: absolute;
     top: 20px;
     opacity: 1;
-    
+    right: 10px;
     animation: hidemessage 400ms 3s ease-in-out forwards;
 }
 

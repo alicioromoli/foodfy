@@ -18,7 +18,7 @@
                     <div class="wrapper__body__cards">
                     {% for recipe in recipes %}
                         <div class="card" id={{recipe.id}}>
-                            <img src={{recipe.path}} alt={{recipe.title}}>
+                            <a href="recipes/{{recipe.id}}"><img src={{recipe.path}} alt={{recipe.title}}></a>
                             <div class="card__title">
                                 <h5>{{recipe.title}}</h5>
                             </div>

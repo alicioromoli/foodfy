@@ -4,22 +4,32 @@
             <div class="wrapper__body">
                     <div class="recipe__head">
                         <div class="recipe__head__img">
-                            <img src="{{item.image}}" alt={{item.title}}>
-                        </div>
+                            <img class="highlight" src="{{files[0].path}}" alt={{item.title}}>
+                                <div class="recipe__head__img__gallery">
+                                    {% for image in files %}    
+                                        <img 
+                                            {% if loop.index == 1 %}
+                                                class="active"
+                                            {% endif %}
+                                            src="{{image.path}}"
+                                            onclick="ImageGallery.setImage(event)"
+                                        >
+                                    {% endfor %}
+                                </div>
+                            </div>
                         <div class="recipe__head__title">
                             <h5>{{item.title}}</h5>
                         </div>
                         <div class="recipe__head__author">
-                            <p>{{chef.name}}</p>
+                            <p>by {{chef.name}}</p>
                         </div>
                     </div>
 
                     <section class="ingredients">
                         <div class="ingredients__head">
                             <h1>Ingredients</h1>
-                            <p onclick = "toogleButton(event, 'ingredientInfo')">open</p>
                         </div>
-                        <div id="ingredientInfo" class="ingredients__information" style="max-height: 0px;">
+                        <div id="ingredientInfo" class="ingredients__information">
                             <ul >
                             {% for ingredient in item.ingredients%}
                                 <li>{{ingredient}}</li>
@@ -32,9 +42,8 @@
                     <section class="prepare"> 
                         <div class="prepare__head">
                             <h1>How to prepare</h1>
-                            <p onclick = "toogleButton(event, 'prepareInfo')">open</p>
                         </div>  
-                        <div class="prepare__information" style="max-height: 0px;">
+                        <div class="prepare__information">
                             <div id ="prepareInfo" >
                                 <ul>
                                     {% for item in item.preparation%}
@@ -48,10 +57,9 @@
                     <section class="information">
                         <div class="information__head">
                             <h1>Aditional Information</h1>
-                            <p onclick = "toogleButton(event, 'informationInfo')">open</p>
                         </div>
                         <div class="information__information">
-                            <p id="informationInfo" style="max-height: 0px;">{{item.information}}</p>
+                            <p id="informationInfo">{{item.information}}</p>
                         </div>
                     </section>
             </div>

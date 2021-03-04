@@ -20,7 +20,8 @@ module.exports = {
         return res.render('admin/chefs/create')
     },
     async show(req, res){
-        const { id } = req.params
+        try{
+            const { id } = req.params
 
         let results = await Chef.findBy(id)
         const chef = results.rows[0]
@@ -56,6 +57,10 @@ module.exports = {
     chef.avatar_img = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
         
     return res.render('admin/chefs/show', { chef, recipes, success })
+        }catch(err){
+            console.log(err)
+            return res.send("Some error has occurred or page doesn’t exist")
+        }
 
     },
     async post(req, res){
@@ -92,7 +97,8 @@ module.exports = {
     },
     async edit(req, res){
 
-        const chef = await Chef.find(req.params.id)
+        try{
+            const chef = await Chef.find(req.params.id)
 
         results = await Chef.findAvatar(chef.file_id)
         const file = results.rows[0]
@@ -101,6 +107,10 @@ module.exports = {
         chef.fileName = file.name
 
         return res.render('admin/chefs/edit', { chef })
+        }catch(err){
+            console.log(err)
+            return res.send("Some error has occurred or page doesn’t exist")
+        }
         
         
     },

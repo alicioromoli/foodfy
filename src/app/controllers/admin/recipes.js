@@ -20,16 +20,20 @@ module.exports = {
     },
     async show(req, res){
 
-        const recipe = await LoadService.load('recipe', req.params.id)
+        try{
+            const recipe = await LoadService.load('recipe', req.params.id)
 
-        const success = await updatingOrCreating(
-            recipe.is_updating, 
-            recipe.is_creating, 
-            recipe.created_at, 
-            recipe.updated_at, 
-            Recipe, req.params.id)
+            const success = await updatingOrCreating(
+                recipe.is_updating, 
+                recipe.is_creating, 
+                recipe.created_at, 
+                recipe.updated_at, 
+                Recipe, req.params.id)
 
-        return res.render('admin/recipes/show', { recipe, success})
+            return res.render('admin/recipes/show', { recipe, success})
+        }catch(err){
+            console.log(er)
+        }
     },
     async post(req, res){
         const keys = Object.keys(req.body)
@@ -77,14 +81,19 @@ module.exports = {
     },
     async edit(req, res){
         
-        const recipe = await LoadService.load('recipe', req.params.id)
+        try{
+            const recipe = await LoadService.load('recipe', req.params.id)
 
-        if (!recipe) return res.send("recipe not found")
+            if (!recipe) return res.send("recipe not found")
 
-        results = await Recipe.chefSelectOptions()
-        const chefSelectOptions = results.rows
+            results = await Recipe.chefSelectOptions()
+            const chefSelectOptions = results.rows
 
-        return res.render('admin/recipes/edit',{ recipe , chefSelectOptions} )
+            return res.render('admin/recipes/edit',{ recipe , chefSelectOptions} )
+            }catch(err){
+                console.log(err)
+                return res.send("Some error has occurred or page doesn’t exist")
+            }
         
     },
     async put(req, res){

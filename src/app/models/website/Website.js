@@ -1,6 +1,12 @@
 const db = require('../../../config/db')
 
 module.exports = {
+    all(){
+        return db.query(`SELECT recipes.* , (chefs.name) AS chef_name
+                        FROM recipes
+                        LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+                        ORDER BY recipes.updated_at DESC`)
+    },
     recipes(filterSearch){
         const { offset, limit, filter } = filterSearch
 
