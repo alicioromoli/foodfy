@@ -1,22 +1,3 @@
-# About Project
-
-<body>
-    <ul>
-        <h3>FOODFY</h3>
-        <li>
-        <p>Foodfy is a project developed on <strong>RocketSeat Bootcamp.</strong></p>
-        </li>
-        <li>
-        <p>The project geared towards culinary in general. A recipe website made by users.</p>
-        </li>
-    </ul>
-</body>
-
-# Still in progress
-
-
-
-
 # About the project
 
 <body>
@@ -56,7 +37,7 @@
 
 <br>
 
-## `Como Utilizar:`
+## `How to start:`
 
 1. Download the project within the command:
     * `git clone()`
@@ -69,11 +50,7 @@
 
 3. Use the postgres to setup the database on the file __src/config/db.js__
 
-4. Caso não possua o banco foodfy com suas tabelas criado, execute os comandos presente no arquivo foodfy.sql.
-
 4. Execute the commands on database.sql in order to create the database tables.
-
-5. Após configurar o arquivo _db.js_ e criar o banco, execute o arquivo seed.js (`node seed.js`) para popular alguns dados e testar a aplicação.
 
 5. After that execute the file seed.js on the terminal with the command (`node seed.js`) in order to populate data into the database in order to test the aplication.
 
