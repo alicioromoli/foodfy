@@ -15,7 +15,7 @@
 
 ------
 ## Preview
-![Uploading 60414ffee4ac7937401482.gif…]()
+![60414ffee4ac7937401482](https://user-images.githubusercontent.com/28360817/110035087-1ee41400-7d33-11eb-988a-76eb6f943ac0.gif)
 
 ## technologies and Frameworks
 
