@@ -13,7 +13,7 @@ function find(filter, table){
                 })
             })
         }
-        console.log(query)
+        
         return db.query(query)
 }
 
@@ -45,7 +45,7 @@ const Base = {
                         VALUES (${values.join(',')}) 
                         RETURNING id`
         
-        console.log(query)
+        
         const results = await db.query(query)
 
         return results.rows[0]
