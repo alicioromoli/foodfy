@@ -16,9 +16,7 @@ let chefIds = []
 let recipesIds = []
 let recipes = []
 let recipeFileId = []
-let recipeFiles = []
 const maxUsers = 3
-const maxChefs = 3
 const maxRecipes = 8
 
 async function createUser(){
