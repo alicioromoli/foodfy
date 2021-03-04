@@ -11,7 +11,7 @@ module.exports = {
             const filePath = {
                 ...file,
             }
-            filePath.path = `${req.protocol}://${req.headers.host}${String(filePath.path).replace('public', "")}`
+            filePath.path = `${String(filePath.path).replace('public', "")}`
 
         return {
             ...recipe,
@@ -54,7 +54,7 @@ module.exports = {
             const filePath = {
                 ...file,
             }
-            filePath.path = `${req.protocol}://${req.headers.host}${String(filePath.path).replace('public', "")}`
+            filePath.path = `${String(filePath.path).replace('public', "")}`
 
         return {
             ...recipe,
@@ -72,7 +72,7 @@ module.exports = {
         let results = await Website.chefs()
         const chefPromise = results.rows.map(chef => ({
             ...chef,
-            avatar_path: `${req.protocol}://${req.headers.host}${chef.avatar_path.replace('public', "")}`
+            avatar_path: `${chef.avatar_path.replace('public', "")}`
         }))
 
         const chefs = await Promise.all(chefPromise)

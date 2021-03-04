@@ -9,7 +9,7 @@ module.exports = {
         let results = await Chef.all()
         const chefPromise = results.rows.map(chef => ({
             ...chef,
-            avatar_path: `${req.protocol}://${req.headers.host}${chef.avatar_path.replace('public', "")}`
+            avatar_path: `${chef.avatar_path.replace('public', "")}`
         }))
 
         const chefs = await Promise.all(chefPromise)
@@ -54,7 +54,7 @@ module.exports = {
         chef.updated_at, 
         Chef, req.params.id)
     
-    chef.avatar_img = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
+    chef.avatar_img = `${file.path.replace('public', "")}`
         
     return res.render('admin/chefs/show', { chef, recipes, success })
         }catch(err){
@@ -103,7 +103,7 @@ module.exports = {
         results = await Chef.findAvatar(chef.file_id)
         const file = results.rows[0]
 
-        chef.avatar_img = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
+        chef.avatar_img = `$${file.path.replace('public', "")}`
         chef.fileName = file.name
 
         return res.render('admin/chefs/edit', { chef })
@@ -161,7 +161,7 @@ module.exports = {
         let results = await Chef.all()
         const chefPromise = results.rows.map(chef => ({
             ...chef,
-            avatar_path: `${req.protocol}://${req.headers.host}${chef.avatar_path.replace('public', "")}`
+            avatar_path: `${chef.avatar_path.replace('public', "")}`
         }))
 
         const chefs = await Promise.all(chefPromise)
